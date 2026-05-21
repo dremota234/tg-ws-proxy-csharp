@@ -9,6 +9,7 @@ using TgWsProxy.Application.Abstractions;
 using TgWsProxy.Application.StartConfig;
 using TgWsProxy.Domain.Abstractions;
 using TgWsProxy.Infrastructure;
+using TgWsProxy.Routing.Extensions;
 
 var cfg = CliParser.Parse(args);
 if (cfg.DcIp.Count == 0)
@@ -72,6 +73,14 @@ await using var provider = new ServiceCollection()
     })
     .AddSingleton(cfg)
     .AddSingleton(dcOpt)
+    .AddRouting(options =>
+    {
+        options.ZapretPort = 1081;
+        options.ZapretDomains = new List<string>
+        {
+            "youtube.com"
+        };
+    })
     .AddProxyApplication()
     .AddProxyInfrastructure()
     .BuildServiceProvider();

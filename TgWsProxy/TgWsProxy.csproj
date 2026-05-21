@@ -21,6 +21,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Routing\TgWsProxy.Routing.csproj" />
 	  <ProjectReference Include="..\TgWsProxy.Infrastructure\TgWsProxy.Infrastructure.csproj" />
 	</ItemGroup>
 
